@@ -17,4 +17,4 @@ jobs:
     - name: Build
       run: cargo build --verbose
     - name: install
-      run: cargo install --verbose
+      run: cargo install --path . --verbose
