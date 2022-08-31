@@ -16,10 +16,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: build
       run: docker run --rm -v "$(pwd)":/src ghcr.io/recmo/rust-static-build:1.63-x86_64 cargo build --release
-    - name: pack
-      run: tar -czf /tmp/pong.tar.gz .
+    - name: install
+      run: cargo install --release
     - name: upload
       uses: actions/upload-artifact@v3
       with:
-          name: pong.tar.gz
-          path: /tmp/pong.tar.gz
+          name: pong
+          path: ./target/x86*/release/pong
