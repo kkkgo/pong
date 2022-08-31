@@ -16,4 +16,9 @@ reply with
 sysctl net.ipv4.icmp_echo_ignore_all=1 
 sysctl net.ipv6.icmp.echo_ignore_all=1
 ```
-and give this program `cap_net_raw` capabilities with `setcap cap_net_raw=ep ~/.cargo/bin/pong`.
+and give this program `cap_net_raw` capabilities with `setcap cap_net_raw=ep ~/.cargo/bin/pong`.  
+
+For gateway[192.168.1.2] , use : 
+```sh
+iptables -t nat -A PREROUTING -p icmp -j DNAT --to 192.168.1.2
+```
