@@ -14,10 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install
-      run: cargo install --path . --verbose
+    - name: build
+      run: docker run --rm -v .:/src ghcr.io/recmo/rust-static-build:1.63-x86_64 cargo build --release
+    - name: pack
+      run: tar -czf /tmp/pong.tar.gz .
     - name: upload
       uses: actions/upload-artifact@v3
       with:
-          name: pong
-          path: /home/runner/.cargo/bin/pong
+          name: pong.tar.gz
+          path: /tmp/pong.tar.gz
