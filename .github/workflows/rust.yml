@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: build
-      run: docker run --rm -v .:/src ghcr.io/recmo/rust-static-build:1.63-x86_64 cargo build --release
+      run: docker run --rm -v "$(pwd)":/src ghcr.io/recmo/rust-static-build:1.63-x86_64 cargo build --release
     - name: pack
       run: tar -czf /tmp/pong.tar.gz .
     - name: upload
